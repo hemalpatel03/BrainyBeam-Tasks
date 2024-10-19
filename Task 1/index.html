@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="table-container"></div>
+    <script>
+        const data = [{
+                Name: 'Hemal',
+                Age: 21,
+                Country: 'India'
+            },
+            {
+                Name: 'Uday',
+                Age: 22,
+                Country: 'UK'
+            },
+            {
+                Name: 'Pratham',
+                Age: 20,
+                Country: 'Canada'
+            }
+        ];
+
+        function createTable(arr) {
+            const table = document.createElement('table');
+            const tableContainer = document.getElementById('table-container');
+
+            const header = table.insertRow();
+            Object.keys(arr[0]).forEach(key => {
+                const th = document.createElement('th');
+                th.innerText = key;
+                header.appendChild(th);
+            });
+            arr.forEach(item => {
+                const row = table.insertRow();
+                Object.values(item).forEach(value => {
+                    const cell = row.insertCell();
+                    cell.innerText = value;
+                });
+            });
+            tableContainer.appendChild(table);
+        }
+        createTable(data);
+    </script>
+</body>
+</html>
